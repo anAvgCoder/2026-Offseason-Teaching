@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveCommands;
 import frc.robot.subsystems.drive.Drive;
@@ -67,6 +68,8 @@ public class RobotContainer {
             () -> getClampedDrive(rightJoy) ? -rightJoy.getY() : 0.0,
             () -> getClampedDrive(rightJoy) ? -rightJoy.getX() : 0.0,
             () -> getClampedTurn(leftJoy) ? -leftJoy.getX() : 0.0));
+
+    rightJoy1Button.onTrue(Commands.runOnce(() -> drive.resetPigeon()));
   }
 
   public boolean getClampedTurn(Joystick joy) {

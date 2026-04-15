@@ -295,6 +295,10 @@ public class Drive extends SubsystemBase {
     poseEstimator.resetPosition(rawGyroRotation, getModulePositions(), pose);
   }
 
+  public void resetPigeon() {
+    gyroIO.resetGyro();
+  }
+
   /** Adds a new timestamped vision measurement. */
   public void addVisionMeasurement(
       Pose2d visionRobotPoseMeters,
