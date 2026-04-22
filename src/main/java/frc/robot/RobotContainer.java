@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveCommands;
 import frc.robot.subsystems.drive.Drive;
@@ -10,10 +11,12 @@ import frc.robot.subsystems.drive.GyroIOPigeon2;
 import frc.robot.subsystems.drive.ModuleIO;
 import frc.robot.subsystems.drive.ModuleIOSim;
 import frc.robot.subsystems.drive.ModuleIOSpark;
+import frc.robot.subsystems.shooter.Shooter;
 
 public class RobotContainer {
   // Subsystems
   private final Drive drive;
+  private final Shooter shooter;
   // Joysticks
   private static final Joystick leftJoy = new Joystick(0);
   private static final Joystick rightJoy = new Joystick(1);
@@ -21,6 +24,7 @@ public class RobotContainer {
 
   // Buttons
   private static final JoystickButton rightJoy1Button = new JoystickButton(rightJoy, 1);
+  private static final JoystickButton leftJoy1Button = new JoystickButton(leftJoy, 1);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -56,6 +60,9 @@ public class RobotContainer {
                 new ModuleIO() {});
         break;
     }
+
+    shooter = new Shooter();
+
     configureButtonBindings();
   }
 
@@ -67,6 +74,22 @@ public class RobotContainer {
             () -> getClampedDrive(rightJoy) ? -rightJoy.getY() : 0.0,
             () -> getClampedDrive(rightJoy) ? -rightJoy.getX() : 0.0,
             () -> getClampedTurn(leftJoy) ? -leftJoy.getX() : 0.0));
+
+    rightJoy1Button.whileTrue(
+      Commands.runOnce(
+        () -> shooter.shoot()));
+
+    rightJoy1Button.onFalse(
+      Commands.runOnce(
+        () -> shooter.stop()));
+
+    leftJoy1Button.whileTrue(
+      Commands.runOnce(
+        () -> shooter.reverse()));
+
+    leftJoy1Button.onFalse(
+      Commands.runOnce(
+        () -> shooter.stop()));
   }
 
   public boolean getClampedTurn(Joystick joy) {
