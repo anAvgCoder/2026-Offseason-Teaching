@@ -10,14 +10,14 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase{
-    SparkMax motor;
-    SparkMaxConfig config;
+    private final SparkMax motor;
+    private final SparkMaxConfig config;
 
-    double speed;
+    private double speed;
 
     public Shooter() {
 
-        motor = new SparkMax(0, MotorType.kBrushless);
+        motor = new SparkMax(15, MotorType.kBrushless);
         config = new SparkMaxConfig();
 
         config

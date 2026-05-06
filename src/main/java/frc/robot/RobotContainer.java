@@ -12,11 +12,13 @@ import frc.robot.subsystems.drive.ModuleIO;
 import frc.robot.subsystems.drive.ModuleIOSim;
 import frc.robot.subsystems.drive.ModuleIOSpark;
 import frc.robot.subsystems.shooter.Shooter;
+import frc.robot.subsystems.elevator.Elevator;
 
 public class RobotContainer {
   // Subsystems
   private final Drive drive;
   private final Shooter shooter;
+  private final Elevator elevator;
   // Joysticks
   private static final Joystick leftJoy = new Joystick(0);
   private static final Joystick rightJoy = new Joystick(1);
@@ -24,7 +26,13 @@ public class RobotContainer {
 
   // Buttons
   private static final JoystickButton rightJoy1Button = new JoystickButton(rightJoy, 1);
+
   private static final JoystickButton leftJoy1Button = new JoystickButton(leftJoy, 1);
+
+  private static final JoystickButton buttonPanel1 = new JoystickButton(buttonPanel, 1);
+  private static final JoystickButton buttonPanel2 = new JoystickButton(buttonPanel, 2);
+  private static final JoystickButton buttonPanel3 = new JoystickButton(buttonPanel, 3);
+  private static final JoystickButton buttonPanel4 = new JoystickButton(buttonPanel, 4);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -63,6 +71,8 @@ public class RobotContainer {
 
     shooter = new Shooter();
 
+    elevator = new Elevator();
+
     configureButtonBindings();
   }
 
@@ -90,6 +100,15 @@ public class RobotContainer {
     leftJoy1Button.onFalse(
       Commands.runOnce(
         () -> shooter.stop()));
+
+    buttonPanel1.whileTrue(
+      Commands.runOnce(
+        () -> elevator.up()));
+
+    buttonPanel1.onFalse(
+      Commands.runOnce(
+        () -> elevator.stop()));
+  
   }
 
   public boolean getClampedTurn(Joystick joy) {
