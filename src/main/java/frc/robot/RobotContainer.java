@@ -105,7 +105,7 @@ public class RobotContainer {
         () -> shooter.stop()));
 
     buttonPanel1.whileTrue(
-      Commands.runOnce(
+      Commands.run(
         () -> elevator.up()));
 
     buttonPanel1.onFalse(
@@ -113,7 +113,7 @@ public class RobotContainer {
         () -> elevator.stop()));
     
     buttonPanel2.whileTrue(
-    Commands.runOnce(
+    Commands.run(
     () -> elevator.down()));
   
     buttonPanel2.onFalse(
@@ -122,23 +122,23 @@ public class RobotContainer {
 
     buttonPanel3.onTrue(
       Commands.runOnce(
-      () -> elevator.goToHome(0)));
+      () -> elevator.goToHome()));
 
     buttonPanel4.onTrue(
       Commands.runOnce(
-        () -> elevator.goToLevel1(1)));
+        () -> elevator.goToLevel1()));
 
     buttonPanel5.onTrue(
       Commands.runOnce(
-        () -> elevator.goToLevel2(2)));
+        () -> elevator.goToLevel2()));
 
     buttonPanel6.onTrue(
       Commands.runOnce(
-        () -> elevator.goToLevel3(3)));
+        () -> elevator.goToLevel3()));
 
     buttonPanel7.onTrue(
       Commands.runOnce(
-        () -> elevator.goToLevel4(4)));
+        () -> elevator.goToLevel4()));
   }
 
   public boolean getClampedTurn(Joystick joy) {
