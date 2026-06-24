@@ -7,17 +7,11 @@ import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
-import org.littletonrobotics.junction.LogFileUtil;
-import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
-import org.littletonrobotics.junction.networktables.NT4Publisher;
-import org.littletonrobotics.junction.wpilog.WPILOGReader;
-import org.littletonrobotics.junction.wpilog.WPILOGWriter;
-import org.littletonrobotics.urcl.URCL;
+
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.BuildConstants;
 
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
@@ -25,6 +19,7 @@ public class Elevator extends SubsystemBase{
     private final SparkMax motor;
     private final SparkMaxConfig config;
     private final RelativeEncoder encoder;
+    
     private double desiredPosition = 0;
     
     private final SparkClosedLoopController cLController;
@@ -123,9 +118,6 @@ public class Elevator extends SubsystemBase{
     }
 
     public double getEncoder() {
-        if (Math.random() > 0.95) {
-            System.out.println(encoder.getPosition());
-        }
         return encoder.getPosition();
     }
 }
