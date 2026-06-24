@@ -94,23 +94,18 @@ public class Elevator extends SubsystemBase{
     }
 
     public void goToLevel1() {
-        desiredPosition = 10;
+        desiredPosition = 58.453;
         currentState = state.LEVEL1;
     }
 
     public void goToLevel2() {
-        desiredPosition = 20;
+        desiredPosition = 101.36;
         currentState = state.LEVEL2;
     }
 
     public void goToLevel3() {
-        desiredPosition = 30;
+        desiredPosition = 158.852;
         currentState = state.LEVEL3;
-    }
-
-    public void goToLevel4() {
-        desiredPosition = 40;
-        currentState = state.LEVEL4;
     }
 
     public void resetEncoder() {

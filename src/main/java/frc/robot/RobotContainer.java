@@ -35,7 +35,6 @@ public class RobotContainer {
   private static final JoystickButton buttonPanel4 = new JoystickButton(buttonPanel, 4);
   private static final JoystickButton buttonPanel5 = new JoystickButton(buttonPanel, 5);
   private static final JoystickButton buttonPanel6 = new JoystickButton(buttonPanel, 6);
-  private static final JoystickButton buttonPanel7 = new JoystickButton(buttonPanel, 7);
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -135,10 +134,6 @@ public class RobotContainer {
     buttonPanel6.onTrue(
       Commands.runOnce(
         () -> elevator.goToLevel3()));
-
-    buttonPanel7.onTrue(
-      Commands.runOnce(
-        () -> elevator.goToLevel4()));
   }
 
   public boolean getClampedTurn(Joystick joy) {
